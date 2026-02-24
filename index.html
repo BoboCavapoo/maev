@@ -93,6 +93,53 @@ window.onload = function() {
 
 </script>
 
+<script>
+function downloadICS() {
+
+const icsContent = `
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Xiaomei//Medication Reminder//CN
+
+BEGIN:VEVENT
+UID:20260226T204500-1@xiaomei
+DTSTAMP:20250220T000000Z
+DTSTART:20260226T204500
+DTEND:20260226T210000
+SUMMARY:💊 小美吃药
+DESCRIPTION:晚饭前喂 0.3ml，伸到喉咙打进去即可
+BEGIN:VALARM
+TRIGGER:-PT0M
+ACTION:DISPLAY
+DESCRIPTION:💊 小美吃药提醒
+END:VALARM
+END:VEVENT
+
+BEGIN:VEVENT
+UID:20260228T204500-2@xiaomei
+DTSTAMP:20250220T000000Z
+DTSTART:20260228T204500
+DTEND:20260228T210000
+SUMMARY:💊 小美吃药
+DESCRIPTION:晚饭前喂 0.3ml，伸到喉咙打进去即可
+BEGIN:VALARM
+TRIGGER:-PT0M
+ACTION:DISPLAY
+DESCRIPTION:💊 小美吃药提醒
+END:VALARM
+END:VEVENT
+
+END:VCALENDAR
+`;
+
+const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8;' });
+const link = document.createElement("a");
+link.href = URL.createObjectURL(blob);
+link.download = "小美吃药提醒.ics";
+link.click();
+}
+</script>
+
 </head>
 
 <body>
