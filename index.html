@@ -16,6 +16,7 @@ body {
   line-height: 1.6;
 }
 h1 { text-align: center; }
+
 .card {
   background: white;
   padding: 16px;
@@ -23,10 +24,12 @@ h1 { text-align: center; }
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
+
 .alert {
   background: #ffe6e6;
   border: 2px solid #ff4d4d;
 }
+
 button {
   background: #ff4d4d;
   color: white;
@@ -36,10 +39,12 @@ button {
   font-size: 16px;
   margin-top: 10px;
 }
+
 .highlight {
   color: #ff0000;
   font-weight: bold;
 }
+
 .footer {
   text-align: center;
   font-size: 14px;
@@ -57,7 +62,7 @@ function requestPermission() {
   }
 }
 
-// 自动提醒逻辑
+// 每分钟检测时间
 function checkMedication() {
   const now = new Date();
   const month = now.getMonth() + 1;
@@ -71,16 +76,15 @@ function checkMedication() {
   if (isMedDay && isTime) {
     if (Notification.permission === "granted") {
       new Notification("💊 小美吃药提醒", {
-        body: "现在是 20:45，晚饭前喂 0.3ml",
+        body: "现在20:45，晚饭前喂 0.3ml，伸到喉咙打进去即可。",
         icon: "icon.png"
       });
     } else {
-      alert("💊 20:45！记得给小美喂药 0.3ml！");
+      alert("💊 现在20:45！晚饭前喂 0.3ml！");
     }
   }
 }
 
-// 每分钟检测
 setInterval(checkMedication, 60000);
 
 window.onload = function() {
@@ -95,32 +99,54 @@ window.onload = function() {
 
 <h1>🐶 小美寄养指南</h1>
 
-<div class="card alert">
-<h2>💊 吃药提醒</h2>
-📅 2月26日 & 2月28日<br>
-⏰ 20:45 自动提醒<br>
-💉 每次 0.3ml<br>
-<p class="highlight">伸到喉咙打进去即可</p>
-</div>
-
 <div class="card">
 <h2>🍖 吃饭</h2>
-早 8-10 ｜ 晚 9-10<br>
-10-12颗冻干
+早 8:00 - 10:00<br>
+晚 9:00 - 10:00<br>
+每次 10-12颗冻干<br>
 </div>
 
 <div class="card">
 <h2>🚽 上厕所</h2>
-次数频繁 无固定时间<br>
-尿垫即可<br>
-⚠️ 可能吃屎
+次数偏频繁<br>
+尿垫尿尿拉屎即可<br>
+没有固定时间<br>
+⚠️ 可能会吃屎<br><br>
+建议：放好尿垫之后让她踩踩，熟悉位置
 </div>
 
 <div class="card">
-<h2>⚠️ 注意</h2>
-🚫 什么都吃<br>
-🔊 开门会大叫<br>
-🦵 后腿外八 不用遛
+<h2>😴 睡觉</h2>
+垫子上睡<br>
+半夜会自己起床上厕所
+</div>
+
+<div class="card alert">
+<h2>💊 吃药</h2>
+📅 2月26日 & 2月28日<br>
+⏰ 晚饭饭前 20:45 提醒<br>
+💉 每次 0.3ml<br>
+<span class="highlight">伸到喉咙打进去即可</span>
+</div>
+
+<div class="card">
+<h2>🎾 玩</h2>
+精力有限<br>
+最多能拔几下河<br>
+最喜欢的玩具是袜子 🧦
+</div>
+
+<div class="card">
+<h2>🪑 硬控技巧</h2>
+放在高一点的地方（比如凳子上）<br>
+她自己下不去
+</div>
+
+<div class="card">
+<h2>⚠️ 注意事项</h2>
+1️⃣ 啥东西都吃，不能让她随地乱闻乱吃<br>
+2️⃣ 留家里的时候，开门回家会大叫<br>
+3️⃣ 后腿不好，走路外八，不太能走，所以也不需要遛
 </div>
 
 <div class="footer">
