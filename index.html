@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐶 小美寄养指南</title>
+
+<link rel="manifest" href="manifest.json">
+
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #fffaf4;
+  margin: 0;
+  padding: 20px;
+  line-height: 1.6;
+}
+h1 { text-align: center; }
+.card {
+  background: white;
+  padding: 16px;
+  margin-bottom: 15px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.alert {
+  background: #ffe6e6;
+  border: 2px solid #ff4d4d;
+}
+button {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 16px;
+  margin-top: 10px;
+}
+.highlight {
+  color: #ff0000;
+  font-weight: bold;
+}
+.footer {
+  text-align: center;
+  font-size: 14px;
+  color: gray;
+  margin-top: 20px;
+}
+</style>
+
+<script>
+
+// 请求通知权限
+function requestPermission() {
+  if ("Notification" in window) {
+    Notification.requestPermission();
+  }
+}
+
+// 自动提醒逻辑
+function checkMedication() {
+  const now = new Date();
+  const month = now.getMonth() + 1;
+  const date = now.getDate();
+  const hour = now.getHours();
+  const minute = now.getMinutes();
+
+  const isMedDay = (month === 2 && (date === 26 || date === 28));
+  const isTime = (hour === 20 && minute === 45);
+
+  if (isMedDay && isTime) {
+    if (Notification.permission === "granted") {
+      new Notification("💊 小美吃药提醒", {
+        body: "现在是 20:45，晚饭前喂 0.3ml",
+        icon: "icon.png"
+      });
+    } else {
+      alert("💊 20:45！记得给小美喂药 0.3ml！");
+    }
+  }
+}
+
+// 每分钟检测
+setInterval(checkMedication, 60000);
+
+window.onload = function() {
+  requestPermission();
+};
+
+</script>
+
+</head>
+
+<body>
+
+<h1>🐶 小美寄养指南</h1>
+
+<div class="card alert">
+<h2>💊 吃药提醒</h2>
+📅 2月26日 & 2月28日<br>
+⏰ 20:45 自动提醒<br>
+💉 每次 0.3ml<br>
+<p class="highlight">伸到喉咙打进去即可</p>
+</div>
+
+<div class="card">
+<h2>🍖 吃饭</h2>
+早 8-10 ｜ 晚 9-10<br>
+10-12颗冻干
+</div>
+
+<div class="card">
+<h2>🚽 上厕所</h2>
+次数频繁 无固定时间<br>
+尿垫即可<br>
+⚠️ 可能吃屎
+</div>
+
+<div class="card">
+<h2>⚠️ 注意</h2>
+🚫 什么都吃<br>
+🔊 开门会大叫<br>
+🦵 后腿外八 不用遛
+</div>
+
+<div class="footer">
+谢谢照顾小美 🐾
+</div>
+
+</body>
+</html>
